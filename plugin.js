@@ -11,10 +11,10 @@ Validator.localize('<%= options.lang %>', <%= options.lang %>)
     if (app.i18n.loadedLanguages[0]) {
       const lang = app.i18n.loadedLanguages[0]
 
-      import [lang] from 'vee-validate/dist/locale/<%= lang %>'
+      import [lang] from `vee-validate/dist/locale/${lang}`
 
       //Loading languages for Vee
-      Validator.localize('<%= lang %>', <%= lang %>)
+      Validator.localize(`${lang}`, lang)
 
       //Localizing the app when user refresh or access a localized link
       Validator.localize(lang);
