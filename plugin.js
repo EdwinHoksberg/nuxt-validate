@@ -6,22 +6,23 @@ import <%= options.lang %> from 'vee-validate/dist/locale/<%= options.lang %>'
 Validator.localize('<%= options.lang %>', <%= options.lang %>)
 <% } %>
 
-
-<% if (options.nuxti18n && app.i18n.loadedLanguages[0]) { %>
+<% if (options.nuxti18n) { %>
   export default function ({ app }) {
-    const lang = app.i18n.loadedLanguages[0]
+    if (app.i18n.loadedLanguages[0]) {
+      const lang = app.i18n.loadedLanguages[0]
 
-    import <%= lang %> from 'vee-validate/dist/locale/<%= lang %>'
+      import <%= lang %> from 'vee-validate/dist/locale/<%= lang %>'
 
-    //Loading languages for Vee
-    Validator.localize('<%= lang %>', <%= lang %>)
+      //Loading languages for Vee
+      Validator.localize('<%= lang %>', <%= lang %>)
 
-    //Localizing the app when user refresh or access a localized link
-    Validator.localize(lang);
+      //Localizing the app when user refresh or access a localized link
+      Validator.localize(lang);
 
-    //Called everytime language change
-    app.i18n.beforeLanguageSwitch = (oldLocale, newLocale) => {
-      Validator.localize(newLocale);
+      //Called everytime language change
+      app.i18n.beforeLanguageSwitch = (oldLocale, newLocale) => {
+        Validator.localize(newLocale);
+      }
     }
   }
 <% } else { %>
