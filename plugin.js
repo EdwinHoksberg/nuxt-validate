@@ -8,9 +8,8 @@ Validator.localize('<%= options.lang %>', <%= options.lang %>)
 
 <% if (options.nuxti18n) { %>
   export default function ({ app }) {
-    if (app.i18n.loadedLanguages[0]) {
-      const lang = app.i18n.loadedLanguages[0]
-
+    const lang = app.i18n.loadedLanguages[0]
+    if (lang) {
       import [lang] from `vee-validate/dist/locale/${lang}`
 
       //Loading languages for Vee
